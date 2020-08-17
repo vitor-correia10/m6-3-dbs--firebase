@@ -1,11 +1,4 @@
-# Tutorial 2
-
-This tutorial builds on the previous one and will walk you through the creation of an app and server that will
-
-1. save user info in a firebase database.
-2. view all users in the database (in the frontend)
-
-## Part 3 - Set up a Firebase Realtime Database
+# Exercise 3 - Set up a Firebase Realtime Database
 
 We now have a user signin but we aren't saving any of the data on this user. In fact, we aren't even using our server yet.
 
@@ -22,21 +15,21 @@ We will flesh out the two functions to call from these endpoints: `getUsers` and
 2. Paste this snippet of code to the top of the file. Under `'use strict';`
 
 ```js
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 
-require('dotenv').config();
+require("dotenv").config();
 
 admin.initializeApp({
   credential: admin.credential.cert({
-    type: 'service_account',
+    type: "service_account",
     project_id: process.env.FIREBASE_PROJECT_ID,
     private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
     client_email: process.env.FIREBASE_CLIENT_EMAIL,
     client_id: process.env.FIREBASE_CLIENT_ID,
-    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-    token_uri: 'https://oauth2.googleapis.com/token',
-    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://oauth2.googleapis.com/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
     client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT,
   }),
   databaseURL: process.env.FB_DATABASE_URL,
@@ -51,11 +44,11 @@ Before we go any further, we need to go back to the Firebase panel and get all o
 
 You should see something like this:
 
-<img src='assets/settings-service-accounts.png' />
+<img src='../assets/settings-service-accounts.png' />
 
 6. Click on `Generate new private key`. This will save a `json` file to your computer. Open it to see what's inside.
 
-<img src='assets/private-key-json.png' />
+<img src='../assets/private-key-json.png' />
 
 Most of the data is super private and should NEVER be saved in your project. You will add the values to a `.env` file.
 
@@ -63,12 +56,12 @@ Most of the data is super private and should NEVER be saved in your project. You
 
 We need to also get our database url. Go back to the Firebase dashboard and create a "Real-time database."
 
-<img src='assets/real-time-db.png' />
+<img src='../assets/real-time-db.png' />
 
 8. When prompted, select `Start in test mode`.
 9. Copy the database URL.
 
-<img src='assets/the-db.png' />
+<img src='../assets/the-db.png' />
 
 We should now be able to initialize the Node Firebase App.
 
@@ -82,13 +75,13 @@ Time to finish up the `createUser` function.
 
 ```js
 const createUser = async (req, res) => {
-  const appUsersRef = db.ref('appUsers');
+  const appUsersRef = db.ref("appUsers");
 
   appUsersRef.push(req.body).then(() => {
     res.status(200).json({
       status: 200,
       data: req.body,
-      message: 'new user',
+      message: "new user",
     });
   });
 };
@@ -132,7 +125,7 @@ const queryDatabase = async (key) => {
   const ref = db.ref(key);
   let data;
   await ref.once(
-    'value',
+    "value",
     (snapshot) => {
       data = snapshot.val();
     },
@@ -276,5 +269,5 @@ useEffect(() => {
     // this is where we need to turn off the connection. It's always good to clean up after oursleves.
     const appUsersRef = firebase.database().ref(`appUsers`);
     appUsersRef.off();
-  };
+  }, [setAllUsers]);
 ```

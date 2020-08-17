@@ -34,8 +34,14 @@ cd client
 yarn start
 ```
 
-## Part 1 - Set up a Firebase app
+## Exercise 1 - Set up a Firebase app
 
-## Part 2 - Set up Google Sign in
+Open this exercise file: [exercise-1.md](__exercises/exercise-1.md)
 
-## Part 3 - Set up a Firebase Realtime Database
+## Exercise 2 - Set up Google Sign in
+
+Open this exercise file: [exercise-2.md](__exercises/exercise-2.md)
+
+## Exercise 3 - Set up a Firebase Realtime Database
+
+Open this exercise file: [exercise-3.md](__exercises/exercise-3.md)

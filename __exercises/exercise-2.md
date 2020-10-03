@@ -10,6 +10,8 @@ import "firebase/auth";
 
 2. Initialize the Firebase app below your `firebaseConfig` declaration, as well as the `firebaseAppAuth` item.
 
+_This is where you will makee use of the `firebaseConfig` from the last exercise._
+
 ```js
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();

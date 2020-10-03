@@ -266,7 +266,7 @@ useEffect(() => {
   }
 
   return () => {
-    // this is where we need to turn off the connection. It's always good to clean up after oursleves.
+    // this is where we need to turn off the connection. It's always good to clean up after ourselves.
     const appUsersRef = firebase.database().ref(`appUsers`);
     appUsersRef.off();
   }, [setAllUsers]);

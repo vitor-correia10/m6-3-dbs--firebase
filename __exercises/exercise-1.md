@@ -55,4 +55,4 @@ var firebaseConfig = {
 
 ![Add Webapp](../assets/3-add-webapp.gif)
 
-11. Copy the contents of that object to the `AppContext.js` file.
+11. Copy the contents of that `firebaseConfig` object to the `AppContext.js` file. You will need it in the next exercise.
